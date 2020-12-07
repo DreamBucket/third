@@ -1,0 +1,34 @@
+.field {
+    width: 100%;
+    height: 50px;
+}
+
+.search {
+    overflow: hidden;
+    position: fixed;
+    top: 100px;
+    left: 10%;
+    width: 80%;
+    z-index: 100;
+    background-color: white;
+    height: 46px;
+    border-radius: 23px;
+    box-shadow: 0 2px 5px -2px #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    background: none !important;
+}
+
+input:focus {
+    background: none !important;
+}

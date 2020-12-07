@@ -1,0 +1,13 @@
+<div class="navigation" *ngIf="sharedService.view as view">
+    <div class="item" (click)="explore()">
+        <img src="assets/icon1.png" *ngIf="view === 'explore'">
+        <img src="assets/icon2.png" *ngIf="view === 'mypage'">
+    </div>
+    <div class="item">
+        <img src="assets/icon3.png" *ngIf="view !== 'form'">
+    </div>
+    <div class="item" (click)="mypage()">
+        <img src="assets/icon5.png" *ngIf="view === 'explore'">
+        <img src="assets/icon4.png" *ngIf="view === 'mypage'">
+    </div>
+</div>

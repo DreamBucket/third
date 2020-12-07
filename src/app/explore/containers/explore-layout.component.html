@@ -1,0 +1,15 @@
+
+<div id="map" style="width:100%; height:100vh;"></div>
+<div class="search">
+    <div style="flex: 2;" class="area">
+        <clr-icon shape="search" size="24"></clr-icon>
+    </div>
+    <div style="flex: 9;" class="area">
+        <div class="clr-control-container" class="field">
+            <div class="clr-input-wrapper">
+                <input type="text" [(ngModel)]="nameFilter" (ngModelChange)="filter()" id="basic" placeholder="" class="clr-input field" style="max-height: none; font-size: 18px"/>
+                <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+        </div>
+    </div>
+</div>

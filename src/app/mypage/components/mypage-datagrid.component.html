@@ -1,0 +1,17 @@
+<div style="margin: 0px 28px 100px 28px;">
+    <div *ngFor="let spot of data">
+        <a class="card clickable" (click)=onGoto(spot)>
+            <div class="card-block">
+                <div class="card-title">
+                    {{ spot.name }}
+                </div>
+                <p class="card-text">
+                </p>
+            </div>
+            <!-- <div class="card-footer">
+                <button class="btn btn-outline" (click)="onEdit(spot.id)">수정</button>
+                <button class="btn btn-outline" (click)="onDelete(spot.id)">삭제</button>
+            </div> -->
+        </a>
+    </div>
+</div>
