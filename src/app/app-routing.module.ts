@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ExploreAddComponent } from './explore/containers/explore-add.component';
 import { ExploreLayoutComponent } from './explore/containers/explore-layout.component';
 import { MypageLayoutComponent } from './mypage/containers/mypage-layout.component';
 
 const routes: Routes = [
+  {
+    path: 'explore/add',
+    component: ExploreAddComponent,
+  },
   {
     path: 'explore',
     component: ExploreLayoutComponent,

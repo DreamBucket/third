@@ -1,0 +1,22 @@
+<div class="topbar">
+  <div class="clickable" (click)="backClicked()"><img src="assets/icon8.png"></div>
+  <div>버킷리스트</div>
+  <div class="clickable" (click)="save()">완료</div>
+</div>
+<div id="map3" style="width:100%; height:50vh; border-bottom: 2px solid #E6E6E6;"></div>
+
+<clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+<form [formGroup]="formGroup">
+  <label>목표 입력</label>
+  <input clrInput type="text" formControlName="name"/>
+  <label>장소명 검색</label>
+  <input clrInput type="text" formControlName="place" (ngModelChange)="findByName($event)"/>
+  <label>경도</label>
+  <input clrInput type="text" formControlName="x"/>
+  <label>위도</label>
+  <input clrInput type="text" formControlName="y"/>
+  <label>메모 적는 칸</label>
+  <input clrInput type="text" formControlName="memo"/>
+  <label>스토리 적는 칸</label>
+  <input clrInput type="text" formControlName="stories"/>
+</form>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Spot } from '../../explore/models/explore.model';
+import { Dream } from '../../explore/models/explore.model';
 
 @Component({
   selector: 'app-mypage-datagrid',
@@ -8,9 +8,9 @@ import { Spot } from '../../explore/models/explore.model';
   styleUrls: ['./mypage-datagrid.component.scss']
 })
 export class MypageDatagridComponent implements OnInit {
-  @Input() data: Spot[];
+  @Input() data: Dream[];
   @Output() delete = new EventEmitter<string>();
-  @Output() goto = new EventEmitter<Spot>();
+  @Output() goto = new EventEmitter<Dream>();
 
   constructor(
     private router: Router,
@@ -27,8 +27,12 @@ export class MypageDatagridComponent implements OnInit {
     this.delete.emit(id);
   }
 
-  onGoto(value: Spot): void {
+  onGoto(value: Dream): void {
     this.goto.emit(value);
+  }
+
+  getPercent(value: Dream) {
+    return `graph${value.progress}`;
   }
 
 }

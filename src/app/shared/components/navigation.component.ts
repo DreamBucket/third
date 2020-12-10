@@ -24,4 +24,8 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['/mypage']);
   }
 
+  add(): void {
+    this.router.navigate(['/explore/add']);
+  }
+
 }

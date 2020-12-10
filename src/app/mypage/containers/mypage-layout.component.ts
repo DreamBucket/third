@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../shared/shared.service';
 import { ExploreService } from '../../explore/explore.service';
-import { Spot } from '../../explore/models/explore.model';
+import { Dream } from '../../explore/models/explore.model';
 
 @Component({
   selector: 'app-mypage-layout',
@@ -12,8 +12,8 @@ export class MypageLayoutComponent implements OnInit {
   kakao = window['kakao'];
   map: any;
 
-  spotList: Spot[];
-  spots: Spot[];
+  dreamList: Dream[];
+  dreams: Dream[];
   nameFilter = '';
 
   constructor(
@@ -31,10 +31,10 @@ export class MypageLayoutComponent implements OnInit {
     };
     this.map = new this.kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
-    this.spotList = this.exploreService.getAll();
-    this.spots = this.spotList;
+    this.dreamList = this.exploreService.getAll();
+    this.dreams = this.dreamList;
 
-    this.spotList.forEach(x => {
+    this.dreamList.forEach(x => {
       // 마커가 표시될 위치입니다 
       const markerPosition  = new this.kakao.maps.LatLng(x.y, x.x); 
       // 마커를 생성합니다
@@ -45,7 +45,7 @@ export class MypageLayoutComponent implements OnInit {
       marker.setMap(this.map);
       console.log(x);
       let iwContent = `
-      <div style="width: 100px; padding:10px">
+      <div style="width: 200px; padding:10px">
         <strong>
           <a href="https://www.naver.com" title="${x.name}">${x.name}</a>
         </strong>
@@ -64,14 +64,19 @@ export class MypageLayoutComponent implements OnInit {
       // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
       infowindow.open(this.map, marker); 
     });
+
+    if (this.dreams.length !== 0) {
+      const bounds = new this.kakao.maps.LatLngBounds();
+      bounds.extend(new this.kakao.maps.LatLng(this.dreams[0].y, this.dreams[0].x));
+      this.map.setBounds(bounds);
+    }
   }
 
   filter(): void {
-    this.spots = this.spotList.filter(x => x.name.includes(this.nameFilter));
+    this.dreams = this.dreamList.filter(x => x.name.includes(this.nameFilter));
   }
 
-  movemap(value: Spot): void {
-    console.log(value);
+  movemap(value: Dream): void {
     const bounds = new this.kakao.maps.LatLngBounds();
     bounds.extend(new this.kakao.maps.LatLng(value.y, value.x));
     this.map.setBounds(bounds);
@@ -79,7 +84,7 @@ export class MypageLayoutComponent implements OnInit {
 
   onDelete(id: string): void {
     this.exploreService.delete(id);
-    this.spotList = this.exploreService.getAll();
+    this.dreamList = this.exploreService.getAll();
     this.filter();
   }
 

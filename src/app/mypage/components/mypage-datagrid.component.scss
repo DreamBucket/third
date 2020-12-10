@@ -1,0 +1,227 @@
+.detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info {
+    padding-left: 8px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    position: relative;
+    float: left;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.place {
+    color: #FFB2B2;
+}
+
+.icons {
+    padding-top: 8px;
+    display: flex;
+    flex-direction: row;
+}
+
+.item h2 {
+    font-size: 18px;
+    text-align:center;
+    position: absolute;
+    line-height: 32px;
+    width: 100%;
+}
+
+svg {
+   -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.circle_animation {
+  stroke-dasharray: 220; /* this value is the pixel circumference of the circle */
+  stroke-dashoffset: 220;
+}
+
+.graph10 .circle_animation {
+    -webkit-animation: graph10 1s ease-out forwards;
+    animation: graph10 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph10 {
+  to {
+    stroke-dashoffset: 198;
+  }
+}
+
+@keyframes graph10 {
+  to {
+    stroke-dashoffset: 198;
+  }
+}
+
+.graph20 .circle_animation {
+    -webkit-animation: graph20 1s ease-out forwards;
+    animation: graph20 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph20 {
+  to {
+    stroke-dashoffset: 176;
+  }
+}
+
+@keyframes graph20 {
+  to {
+    stroke-dashoffset: 176;
+  }
+}
+
+.graph30 .circle_animation {
+    -webkit-animation: graph30 1s ease-out forwards;
+    animation: graph30 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph30 {
+  to {
+    stroke-dashoffset: 154;
+  }
+}
+
+@keyframes graph30 {
+  to {
+    stroke-dashoffset: 154;
+  }
+}
+
+.graph40 .circle_animation {
+    -webkit-animation: graph40 1s ease-out forwards;
+    animation: graph40 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph40 {
+  to {
+    stroke-dashoffset: 132;
+  }
+}
+
+@keyframes graph40 {
+  to {
+    stroke-dashoffset: 132;
+  }
+}
+
+.graph50 .circle_animation {
+    -webkit-animation: graph50 1s ease-out forwards;
+    animation: graph50 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph50 {
+  to {
+    stroke-dashoffset: 110;
+  }
+}
+
+@keyframes graph50 {
+  to {
+    stroke-dashoffset: 110;
+  }
+}
+
+.graph60 .circle_animation {
+    -webkit-animation: graph60 1s ease-out forwards;
+    animation: graph60 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph60 {
+  to {
+    stroke-dashoffset: 88;
+  }
+}
+
+@keyframes graph60 {
+  to {
+    stroke-dashoffset: 88;
+  }
+}
+
+.graph70 .circle_animation {
+    -webkit-animation: graph70 1s ease-out forwards;
+    animation: graph70 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph70 {
+  to {
+    stroke-dashoffset: 66;
+  }
+}
+
+@keyframes graph70 {
+  to {
+    stroke-dashoffset: 66;
+  }
+}
+
+.graph80 .circle_animation {
+    -webkit-animation: graph80 1s ease-out forwards;
+    animation: graph80 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph80 {
+  to {
+    stroke-dashoffset: 44;
+  }
+}
+
+@keyframes graph80 {
+  to {
+    stroke-dashoffset: 44;
+  }
+}
+
+.graph90 .circle_animation {
+    -webkit-animation: graph90 1s ease-out forwards;
+    animation: graph90 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph90 {
+  to {
+    stroke-dashoffset: 22;
+  }
+}
+
+@keyframes graph90 {
+  to {
+    stroke-dashoffset: 22;
+  }
+}
+
+.graph100 .circle_animation {
+    -webkit-animation: graph100 1s ease-out forwards;
+    animation: graph100 1s ease-out forwards;
+}
+
+@-webkit-keyframes graph100 {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes graph100 {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

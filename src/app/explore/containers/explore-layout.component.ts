@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../shared/shared.service';
 import { ExploreService } from '../explore.service';
-import { Spot } from '../models/explore.model';
+import { Dream } from '../models/explore.model';
 
 @Component({
   selector: 'app-explore-layout',
@@ -12,8 +12,8 @@ export class ExploreLayoutComponent implements OnInit {
   kakao = window['kakao'];
   map: any;
 
-  spotList: Spot[];
-  spots: Spot[];
+  dreamList: Dream[];
+  dreams: Dream[];
   nameFilter = '';
 
   constructor(
@@ -31,10 +31,10 @@ export class ExploreLayoutComponent implements OnInit {
     };
     this.map = new this.kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
-    this.spotList = this.exploreService.getAll();
-    this.spots = this.spotList;
+    this.dreamList = this.exploreService.getAll();
+    this.dreams = this.dreamList;
 
-    this.spotList.forEach(x => {
+    this.dreamList.forEach(x => {
       // 마커가 표시될 위치입니다 
       const markerPosition  = new this.kakao.maps.LatLng(x.y, x.x); 
       // 마커를 생성합니다
@@ -47,12 +47,12 @@ export class ExploreLayoutComponent implements OnInit {
       let iwContent = `
       <div style="width: 200px; padding:10px">
         <strong>
-          <a href="https://www.naver.com" title="${x.name}">${x.name}</a>
+          <a href="https://www.naver.com" title="${x.place}">${x.place}</a>
         </strong>
         <div class="content">
             <div>`;
       iwContent = iwContent +
-            `여권 재발급 받기</div>
+            `${x.name}</div>
         </div>
       </div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
       const iwPosition = new this.kakao.maps.LatLng(x.y, x.x); //인포윈도우 표시 위치입니다
@@ -64,13 +64,31 @@ export class ExploreLayoutComponent implements OnInit {
       // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
       infowindow.open(this.map, marker); 
     });
+
+    if (this.dreams.length !== 0) {
+      const bounds = new this.kakao.maps.LatLngBounds();
+      bounds.extend(new this.kakao.maps.LatLng(this.dreams[0].y, this.dreams[0].x));
+      this.map.setBounds(bounds);
+    }
   }
 
   filter(): void {
-    this.spots = this.spotList.filter(x => x.name.includes(this.nameFilter));
+    const bounds = new this.kakao.maps.LatLngBounds();
+    const data = this.dreams.filter(x => x.place.includes(this.nameFilter) || x.name.includes(this.nameFilter))
+    if (data.length !== 0) {
+      data.forEach(location => {
+        const marker = new this.kakao.maps.Marker({
+            map: this.map,
+            position: new this.kakao.maps.LatLng(location.y, location.x) 
+        });
+        bounds.extend(new this.kakao.maps.LatLng(location.y, location.x));
+      });
+      // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+      this.map.setBounds(bounds);
+    }
   }
 
-  movemap(value: Spot): void {
+  movemap(value: Dream): void {
     console.log(value);
     const bounds = new this.kakao.maps.LatLngBounds();
     bounds.extend(new this.kakao.maps.LatLng(value.y, value.x));
@@ -79,7 +97,7 @@ export class ExploreLayoutComponent implements OnInit {
 
   onDelete(id: string): void {
     this.exploreService.delete(id);
-    this.spotList = this.exploreService.getAll();
+    this.dreamList = this.exploreService.getAll();
     this.filter();
   }
 

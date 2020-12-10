@@ -1,16 +1,39 @@
 <div style="margin: 0px 28px 100px 28px;">
-    <div *ngFor="let spot of data">
-        <a class="card clickable" (click)=onGoto(spot)>
-            <div class="card-block">
-                <div class="card-title">
-                    {{ spot.name }}
+    <div *ngFor="let item of data">
+        <a class="card clickable" (click)=onGoto(item)>
+            <div class="detail">
+                <div class="graph" style="flex: 3;">
+                    <div class="item" [ngClass]="getPercent(item)">
+                        <h2>{{ item.progress }}%</h2>
+                        <svg style="position: absolute" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                            <circle r="34.928495" cy="41" cx="41" stroke-width="8" stroke="#EBEBEB" fill="none"/>
+                        </svg>
+                        <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                            <title>Layer 1</title>
+                            <circle class="circle_animation" r="34.928495" cy="41" cx="41" stroke-width="8" stroke="#FFA7A7" fill="none"/>
+                            </g>
+                        </svg>
+                    </div>
                 </div>
-                <p class="card-text">
-                </p>
+                <div class="info" style="flex: 6;">
+                    <div class="title">
+                        {{ item.name }}
+                    </div>
+                    <div class="place">
+                        # {{ item.place }}
+                    </div>
+                    <div class="icons">
+                        <div><img src="assets/icon6.png"></div>
+                        <div style="padding-left: 5px">{{ item.likes }}</div>
+                        <div style="padding-left: 20px"><img src="assets/icon7.png"></div>
+                        <div style="padding-left: 5px">{{ item.stories.length }}</div>
+                    </div>
+                </div>
             </div>
             <!-- <div class="card-footer">
-                <button class="btn btn-outline" (click)="onEdit(spot.id)">수정</button>
-                <button class="btn btn-outline" (click)="onDelete(spot.id)">삭제</button>
+                <button class="btn btn-outline" (click)="onEdit(item.id)">수정</button>
+                <button class="btn btn-outline" (click)="onDelete(item.id)">삭제</button>
             </div> -->
         </a>
     </div>
