@@ -7,7 +7,7 @@ export interface Dream {
     memo: string;
     likes: number;
     progress: number;
-    stories: string;
+    stories: string[];
 }
 
 export interface DreamForm {
@@ -17,5 +17,5 @@ export interface DreamForm {
     place: string;
     memo: string;
     progress: number;
-    stories: string;
+    stories: string[];
 }

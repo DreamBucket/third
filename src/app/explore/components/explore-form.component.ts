@@ -18,7 +18,7 @@ export class ExploreFormComponent implements OnInit {
       place: new FormControl([value.place]),
       memo: new FormControl([value.memo]),
       progress: new FormControl([value.progress]),
-      stories: new FormControl([value.stories]),
+      stories: new FormControl([value.stories]), // formarray로 바뀌어야 함
     });
   }
   @Output() output = new EventEmitter<DreamForm>();
@@ -51,7 +51,7 @@ export class ExploreFormComponent implements OnInit {
         place: new FormControl(['']),
         memo: new FormControl(['']),
         progress: new FormControl(['0']),
-        stories: new FormControl(['']),
+        stories: new FormControl(['']), // formarray로 바뀌어야 함
       });
     }
     else {
@@ -77,7 +77,7 @@ export class ExploreFormComponent implements OnInit {
       place: this.formGroup.controls['place'].value,
       memo: this.formGroup.controls['memo'].value,
       progress: this.formGroup.controls['progress'].value,
-      stories: this.formGroup.controls['stories'].value,
+      stories: this.formGroup.controls['stories'].value, // formarray로 바뀌어야 함
     });
   }
 

@@ -13,7 +13,7 @@ export class ExploreService {
           memo: '메모입니다',
           likes: 15,
           progress: 60,
-          stories: '',
+          stories: [],
       },
       {
           id: '2',
@@ -24,7 +24,7 @@ export class ExploreService {
           memo: '메모입니다',
           likes: 10,
           progress: 100,
-          stories: '',
+          stories: [],
       },
       {
           id: '1',
@@ -35,7 +35,7 @@ export class ExploreService {
           memo: '메모입니다',
           likes: 15,
           progress: 0,
-          stories: '',
+          stories: [],
       },
       {
           id: '3',
@@ -46,7 +46,7 @@ export class ExploreService {
           memo: '메모입니다',
           likes: 10,
           progress: 40,
-          stories: '',
+          stories: [],
       },
   ];
 

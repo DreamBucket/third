@@ -7,16 +7,14 @@
 
 <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
 <form [formGroup]="formGroup">
-  <label>목표 입력</label>
-  <input clrInput type="text" formControlName="name"/>
-  <label>장소명 검색</label>
-  <input clrInput type="text" formControlName="place" (ngModelChange)="findByName($event)"/>
+  <input clrInput type="text" formControlName="name" placeholder="버킷리스트"/>
+  <input clrInput type="text" formControlName="place" placeholder="위치 추가" (ngModelChange)="findByName($event)"/>
   <label>경도</label>
   <input clrInput type="text" formControlName="x"/>
   <label>위도</label>
   <input clrInput type="text" formControlName="y"/>
   <label>메모 적는 칸</label>
-  <input clrInput type="text" formControlName="memo"/>
+  <textarea clrTextarea formControlName="memo" name="description"></textarea>
   <label>스토리 적는 칸</label>
   <input clrInput type="text" formControlName="stories"/>
 </form>
