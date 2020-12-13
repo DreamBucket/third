@@ -14,11 +14,55 @@
     font-weight: 500;
     border-bottom: 2px solid #E6E6E6;
     padding-left: 20px;
-    padding-right: 30px;
+    padding-right: 20px;
 }
 
 .clickable {
     color: #707070;
     cursor: pointer;
     font-size: 20px;
+    padding-right: 10px;
 }
+
+.myform {
+    padding: 0 24px;
+    input {
+        background-color: inherit;
+        width: 100%;
+        font-size: 18px;
+    }
+    .myinput {
+        margin-top: 12px;
+        border: none;
+        border-bottom: 1px solid #EEA6A6;
+    }
+    textarea {
+        padding: 6px;
+        background-color: inherit;
+        width: 100%;
+        height: 72px;
+        font-size: 12px;
+        border: 1px solid #EEA6A6;
+    }
+    .clr-form-control {
+        margin-top: 12px;
+    }
+    .memo {
+        margin-top: 12px;
+    }
+    .story {
+        margin-top: 12px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .card {
+        margin-top: 0;
+        input {
+            padding: 6px 12px;
+            background-color: inherit;
+            font-size: 18px;
+            border: none;
+        }
+    }
+}
+
