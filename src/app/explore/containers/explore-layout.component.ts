@@ -11,6 +11,7 @@ import { Dream } from '../models/explore.model';
 export class ExploreLayoutComponent implements OnInit {
   kakao = window['kakao'];
   map: any;
+  markers: any[] = [];
 
   dreamList: Dream[];
   dreams: Dream[];
@@ -47,7 +48,7 @@ export class ExploreLayoutComponent implements OnInit {
       let iwContent = `
       <div style="width: 200px; padding:10px">
         <strong>
-          <a href="https://www.naver.com" title="${x.place}">${x.place}</a>
+          <a href="" title="${x.place}">${x.place}</a>
         </strong>
         <div class="content">
             <div>`;
@@ -65,11 +66,13 @@ export class ExploreLayoutComponent implements OnInit {
       infowindow.open(this.map, marker); 
     });
 
-    if (this.dreams.length !== 0) {
-      const bounds = new this.kakao.maps.LatLngBounds();
-      bounds.extend(new this.kakao.maps.LatLng(this.dreams[0].y, this.dreams[0].x));
-      this.map.setBounds(bounds);
-    }
+    this.filter();
+
+    // if (this.dreams.length !== 0) {
+    //   const bounds = new this.kakao.maps.LatLngBounds();
+    //   bounds.extend(new this.kakao.maps.LatLng(this.dreams[0].y, this.dreams[0].x));
+    //   this.map.setBounds(bounds);
+    // }
   }
 
   filter(): void {

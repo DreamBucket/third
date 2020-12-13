@@ -25,6 +25,7 @@ export class ExploreFormComponent implements OnInit {
 
   kakao = window['kakao'];
   map: any;
+  markers: any[] = [];
 
   formGroup: FormGroup;
   editId: string;
@@ -82,7 +83,6 @@ export class ExploreFormComponent implements OnInit {
   }
 
   findByName(value: string): void{
-    console.log(value);
     if (!value.length) {
       return;
     }
@@ -92,25 +92,30 @@ export class ExploreFormComponent implements OnInit {
 
     search.keywordSearch(value, (data, status, pagination) => {
       if (status === that.kakao.maps.services.Status.OK) {
-          const bounds = new that.kakao.maps.LatLngBounds();
-          data.forEach(location => {
-            const marker = new that.kakao.maps.Marker({
-                map: that.map,
-                position: new that.kakao.maps.LatLng(location.y, location.x) 
-            });
-            // 마커에 클릭이벤트를 등록합니다
-            that.kakao.maps.event.addListener(marker, 'click', () => {
-                // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-                infowindow.setContent('<div style="padding:5px;font-size:12px;">' + location.place_name + '</div>');
-                infowindow.open(that.map, marker);
-                that.formGroup.controls['place'].setValue(location.place_name);
-                that.formGroup.controls['x'].setValue(location.x);
-                that.formGroup.controls['y'].setValue(location.y);
-            });
-            bounds.extend(new that.kakao.maps.LatLng(location.y, location.x));
+        that.markers.forEach(x => {
+          x.setMap(null);
+        })
+        that.markers = [];
+        const bounds = new that.kakao.maps.LatLngBounds();
+        data.forEach(location => {
+          const marker = new that.kakao.maps.Marker({
+              map: that.map,
+              position: new that.kakao.maps.LatLng(location.y, location.x) 
           });
-          // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-          this.map.setBounds(bounds);
+          that.markers.push(marker);
+          // 마커에 클릭이벤트를 등록합니다
+          that.kakao.maps.event.addListener(marker, 'click', () => {
+              // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+              infowindow.setContent('<div style="padding:5px;font-size:12px;">' + location.place_name + '</div>');
+              infowindow.open(that.map, marker);
+              that.formGroup.controls['place'].setValue(location.place_name);
+              that.formGroup.controls['x'].setValue(location.x);
+              that.formGroup.controls['y'].setValue(location.y);
+          });
+          bounds.extend(new that.kakao.maps.LatLng(location.y, location.x));
+        });
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        this.map.setBounds(bounds);
       }
     });
   }
