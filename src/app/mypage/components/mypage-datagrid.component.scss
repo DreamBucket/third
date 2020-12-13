@@ -1,3 +1,8 @@
+.card {
+  box-shadow: none;
+  border-radius: 10px;
+}
+
 .detail {
     display: flex;
     justify-content: center;
@@ -44,6 +49,35 @@
     position: absolute;
     line-height: 32px;
     width: 100%;
+}
+
+.addstory {
+  background-color: #FFB9B9;
+  border-radius: 5px;
+  color: black;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  padding-bottom: 11px;
+}
+
+.storyform {
+  display: flex;
+}
+
+.storyarea {
+    width: 80%;
+    background-color: white;
+    height: 22px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px -2px #333;
+    padding-right: 5px;
+}
+
+.storysubmit {
+  padding-left: 10px;
+  cursor: pointer;
 }
 
 svg {
