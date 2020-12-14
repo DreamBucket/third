@@ -35,16 +35,18 @@ export class ExploreLayoutComponent implements OnInit {
     this.dreamList = this.exploreService.getAll();
     this.dreams = this.dreamList;
 
+    const bounds = new this.kakao.maps.LatLngBounds();
+    const infowindow = new this.kakao.maps.InfoWindow({zIndex:1});
     this.dreamList.forEach(x => {
-      // 마커가 표시될 위치입니다 
-      const markerPosition  = new this.kakao.maps.LatLng(x.y, x.x); 
-      // 마커를 생성합니다
-      const marker = new this.kakao.maps.Marker({
-        position: markerPosition
-      });
-      // 마커가 지도 위에 표시되도록 설정합니다
-      marker.setMap(this.map);
-      console.log(x);
+        const marker = new this.kakao.maps.Marker({
+            map: this.map,
+            position: new this.kakao.maps.LatLng(x.y, x.x) 
+        });
+        this.markers.push(marker);
+        // 마커에 클릭이벤트를 등록합니다
+        this.kakao.maps.event.addListener(marker, 'click', () => {
+            // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+            
       let iwContent = `
       <div style="width: 200px; padding:10px">
         <strong>
@@ -56,17 +58,15 @@ export class ExploreLayoutComponent implements OnInit {
             `${x.name}</div>
         </div>
       </div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-      const iwPosition = new this.kakao.maps.LatLng(x.y, x.x); //인포윈도우 표시 위치입니다
-      // 인포윈도우를 생성합니다
-      const infowindow = new this.kakao.maps.InfoWindow({
-        position : iwPosition, 
-        content : iwContent,
-      });
-      // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-      infowindow.open(this.map, marker); 
-    });
+            infowindow.setContent(iwContent);
+            infowindow.open(this.map, marker);
+        });
+        bounds.extend(new this.kakao.maps.LatLng(x.y, x.x));
+      // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 
-    this.filter();
+    });
+    this.map.setBounds(bounds);
+
 
     // if (this.dreams.length !== 0) {
     //   const bounds = new this.kakao.maps.LatLngBounds();
@@ -80,10 +80,6 @@ export class ExploreLayoutComponent implements OnInit {
     const data = this.dreams.filter(x => x.place.includes(this.nameFilter) || x.name.includes(this.nameFilter))
     if (data.length !== 0) {
       data.forEach(location => {
-        const marker = new this.kakao.maps.Marker({
-            map: this.map,
-            position: new this.kakao.maps.LatLng(location.y, location.x) 
-        });
         bounds.extend(new this.kakao.maps.LatLng(location.y, location.x));
       });
       // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
